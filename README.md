@@ -8,16 +8,7 @@ or like this:
 Blocked loading resource from url not allowed by $sceDelegate policy.  URL: https://itunes.apple.com/search?term=beyonce&media=music
 ```
 
-There are a few ways to fix this problem.
-
-## Short Answer - Chrome Extension
-You can download a Chrome extension that enables CORS on your browser.  This is a great quick fix, or a great testing tool to make sure that you're correctly diagnosing the problem.  You can access the extension from this link:
-
-https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi
-
-This will add a 'CORS' icon to your extensions that you can access to enable/disable CORS to your browser.  (Note: When active it may cause others error authenticating with Google, Facebook, etc.)
-
-##Long Answer - Proxy Server
+## Setting up a Proxy Server
 You can setup a proxy server in another repository to act as a 'middleman' between the api you're trying to access and your application.  This will require a new repository.  You can access a boilerplate for this repository here: 
 
 https://github.com/BlaiseRoberts/proxy-server
