@@ -13,68 +13,84 @@ You can setup a proxy server in another repository to act as a 'middleman' betwe
 
 https://github.com/BlaiseRoberts/proxy-server
 
-When creating the repository on gitHub you can have it create a .gitignore for you for a 'Node' project.
+When creating the repository on gitHub you can have it create a `.gitignore` for you for a 'Node' project.
 
-1. Once the repository is created with your .gitignore file you will need to run some commands in your terminal to set up the rest of your files.
+1. Once the repository is created with your `.gitignore` file you will need to run some commands in your terminal to set up the rest of your files.
+
     ```
     touch server.js
     npm init
     npm install express --save
     npm install request --save
     ```
-This should create a .js file and a package.json file that should include express and request in your dependencies.  
+    This should create a .js file and a package.json file that should include express and request in your dependencies.  
 
-1. Now you will be able to copy some code from the boilerplate repository.  From the package.json file you will need to include an 'engine' it will be inserted between your "main" and "scripts" and look like this:
+1. Now you will be able to copy some code from the boilerplate repository.  From the `package.json` file you will need to include an 'engine' it will be inserted between your "main" and "scripts" and look like this:
+    
     ```
     "engines": {
         "node": "6.5.0"
     },
     ```
-(for more details refer to the boilerplate code)
-From the server.js file you will need to copy the entire file and then next we will edit some of the code.
+    (For more details refer to the boilerplate code.)
+    From the `server.js` file you will need to copy the entire file and then next we will edit some of the code.
 
-1. After you've copied the server.js file you'll only need to change a few things. You will need the URL of the api your application is trying to access(externalAPI) and a path name that you will create to facilitate the request. ('/made/up/path')
-    You will replace code within the 'app.get' and it should look like this:
+1. After you've copied `server.js` you'll only need to change a few things. You will need the URL of the API your application is trying to access (`externalAPI`) and a path name (`'/made/up/path'`) that you will create to facilitate the request. 
+    
+    You will replace code within `app.get` and it should look like this:
+
     ```
     app.get('/made/up/path/*', (req, res) => {
-      let apiCall = req.url.slice('/made/up/path/'.length)
-      let apiReq = `externalAPI${apiCall}`
-      request.get(apiReq, (err, _, body) => {
-        res.send(body)
-      });
+        let apiCall = req.url.slice('/made/up/path/'.length)
+        let apiReq = `externalAPI${apiCall}`
+        request.get(apiReq, (err, _, body) => {
+            res.send(body)
+        });
     });
     ```
-Once this is complete you can test your proxy-server by hosting it locally.  You can run this command in your terminal:
+    Once this is complete you can test your proxy-server by hosting it locally.  You can run this command in your terminal:
+
     ```
     node server.js
     ```
-This should give you a localhost for your proxy server on a port.  It will give a message like: 
+
+    This should give you a localhost for your proxy server on a port.  It will give a message like: 
+    
     ```
     Listening on port: 6060
     ```
+
 You can now test our new URL in Postman.  It should look something like this:
-    ```
-    localhost:6060/api/itunes/?term=beyonce&media=music
-    ```
-(You will have to use your port number and your 'made/up/path', these will be replaced by the beginning or your original external api URL on your prox-server)
 
-    **Woo-Hoo IT WORKS!** 
+```
+localhost:6060/api/itunes/?term=beyonce&media=music
+```
 
-    *(I hope)*
+You will have to use your port number and your `'made/up/path'`; these will be replaced by the beginning or your original external API URL on your proxy-server.
 
-    **Now to server your proxy-server up somewhere outside of your terminal!**
+> Woo-Hoo IT WORKS!** 
+>
+> (I hope)
+>
+> Now to server your proxy-server up somewhere outside of your terminal!
+
+## Set up the proxy server on Heroku
 
 1. Create a Heroku account!
 
-This will invole activating your account via your personal e-mail.
-Once your have created your account you will need to install heroku to your machine via homebrew.  You should type this command into your terminal:
+    This will invole activating your account via your personal e-mail.
+
+1. Once your have created your account you will need to install heroku to your machine via homebrew.  You should type this command into your terminal:
 
     ```
-     brew install heroku
+        brew install heroku
     ```
 
-After you have installed heroku we can setup a remote repository on heroku.
-You should click create new app and follow the instructions.  Next, you should type the commands below once inside your proxy-server project:
+    After you have installed Heroku we can set up a remote repository on Heroku.
+
+1. You should click create new app and follow the instructions.
+
+1. Next, you should type the commands below once inside your proxy-server project:
 
     ```
     heroku login  //Login with your user info.
@@ -84,7 +100,7 @@ You should click create new app and follow the instructions.  Next, you should t
     git push heroku master
     ```
 
-Once this is finished it should give you a message in your terminal that will include your new URL or accessing your proxy-server. This end of your message should look something like this:
+1. Once this is finished it should give you a message in your terminal that will include your new URL or accessing your proxy-server. This end of your message should look something like this:
 
     ```
     remote: -----> Compressing...
@@ -97,17 +113,19 @@ Once this is finished it should give you a message in your terminal that will in
     To https://git.heroku.com/itunes-proxy.git
     ```
 
-You will only need the URL under 'Launching...' 
-(ex: 'https://itunes-proxy.herokuapp.com/')
-You can now test your new address in Postman as well. it should look something like this:
+    You will only need the URL under 'Launching...' 
+    - Ex: 'https://itunes-proxy.herokuapp.com/'
+
+    You can now test your new address in Postman as well. it should look something like this:
 
     ```
     https://itunes-proxy.herokuapp.com/api/itunes/?term=beyonce&media=music
     ```
 
-We are using the Heroku URL + made/up/path + Params for external api.
+    We are using the Heroku URL + made/up/path + Params for external api.
 
-__WOO HOO!__
-__You really did it!__
+> WOO HOO!__
+> 
+> You really did it!__
 
-Now you can use this new URL in your application to send httprequests to the external api!
+Now you can use this new URL in your application to send HTTPRequests to the external API!
