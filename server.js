@@ -8,7 +8,8 @@ const app = express();
 const port = process.env.PORT || 6060;
 app.set('port', port);
 
-const apiUrl = "https://www.goodreads.com";
+const grUrl = "https://www.goodreads.com";
+const mmUrl = "http://api.musixmatch.com/ws/1.1";
 
 // MIDDLEWARE (transform stream)
 app.use(function (req, res, next) {
@@ -17,10 +18,17 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.get(`/gr/*`, (req, res) => {
+    let apiCall = req.url.slice('/gr/'.length)
+    let apiReq = `${grUrl}/${apiCall}`
+    request.get(apiReq, (err, _, body) => {
+        res.send(body)
+    });
+});
 
-app.get(`/api/*`, (req, res) => {
-    let apiCall = req.url.slice('/api/'.length)
-    let apiReq = `${apiUrl}/${apiCall}`
+app.get(`/mm/*`, (req, res) => {
+    let apiCall = req.url.slice('/mm/'.length)
+    let apiReq = `${mmUrl}/${apiCall}`
     request.get(apiReq, (err, _, body) => {
         res.send(body)
     });
