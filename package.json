@@ -10,19 +10,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BlaiseRoberts/proxy-server.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BlaiseRoberts/proxy-server/issues"
-  },
-  "homepage": "https://github.com/BlaiseRoberts/proxy-server#readme",
+  "keywords": [],
   "dependencies": {
     "express": "^4.16.2",
     "request": "^2.83.0"
   },
-  "keywords": []
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenziebottoms/mixify-proxy-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kenziebottoms/mixify-proxy-server/issues"
+  },
+  "homepage": "https://github.com/kenziebottoms/mixify-proxy-server#readme"
 }
